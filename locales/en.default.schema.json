@@ -3323,6 +3323,17 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "page-nav": {
+      "name": "Page Nav",
+      "settings": {
+        "menu": {
+          "label": "Page Links"
+        }
+      },
+      "presets": {
+        "name": "Page Nav"
+      }
     }
   }
 }
