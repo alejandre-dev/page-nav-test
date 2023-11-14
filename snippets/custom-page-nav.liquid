@@ -1,0 +1,26 @@
+{%- assign custom_page_id = 'custom-page--' | append: section.id -%}
+
+<div id="{{ custom_page_id }}"></div>
+
+<script defer>
+  window.addEventListener("page-nav:change", () => {
+    const url = new URL(window.location);
+    url.searchParams.append('section_id', 'custom-page');
+    const urlString = url.toString();
+    
+    fetchSection(urlString);
+  });
+
+  async function fetchSection(sectionURL) {
+    const response = await fetch(sectionURL);
+    if (!response.ok) throw new Error(response.status);
+
+    const text = await response.text();
+    const htmlMarkup = new DOMParser()
+        .parseFromString(text, 'text/html')
+        .querySelector('#shopify-section-custom-page').innerHTML;
+
+    const section = document.querySelector('#{{ custom_page_id }}');
+    section.innerHTML = htmlMarkup;
+  }
+</script>

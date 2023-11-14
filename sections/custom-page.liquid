@@ -1,0 +1,21 @@
+{%- assign page_handle = request.path | split: '/' | last -%}
+{%- assign page = pages[page_handle] -%}
+
+<div id="page-nav__page--{{ page.handle }}" class="page-nav__page-content page-width page-width--narrow">
+  <h2 class="page-title h1{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if page.title != blank -%}
+      {{ page.title | escape }}
+    {%- else -%}
+      {{ 'sections.page.title' | t }}
+    {%- endif -%}
+  </h2>
+  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if page.content != blank -%}
+      {{ page.content }}
+    {%- else -%}
+      <div class="page-placeholder-wrapper placeholder">
+        {{ 'page' | placeholder_svg_tag: 'page-placeholder' }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
